@@ -16,6 +16,7 @@ repositories {
     maven("https://jitpack.io")
     maven("https://maven.enginehub.org/repo/")
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -31,18 +32,13 @@ dependencies {
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
     compileOnly("net.ess3:EssentialsXSpawn:2.16.1")
     compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.2.6-SNAPSHOT")
+    compileOnly("dev.avrg:skycells:0.1.0")
 
     // Enable lombok annotation processing
     annotationProcessor("org.projectlombok:lombok:1.18.22")
 }
 
 tasks {
-    // "Replace" the build task with the shadowJar task (probably bad but who cares)
-    jar {
-        dependsOn("shadowJar")
-        enabled = false
-    }
-
     shadowJar {
         fun relocate(origin: String) =
             relocate(origin, "com.iridium.iridiumskyblock.dependencies${origin.substring(origin.lastIndexOf('.'))}")

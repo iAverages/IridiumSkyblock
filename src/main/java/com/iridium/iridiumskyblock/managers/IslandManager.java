@@ -35,6 +35,7 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import dev.avrg.skycells.Skycells;
 
 public class IslandManager extends TeamManager<Island, User> {
 
@@ -141,6 +142,7 @@ public class IslandManager extends TeamManager<Island, User> {
             Schematics.SchematicConfig schematicConfig = IridiumSkyblock.getInstance().getSchematics().schematics.get(schematic);
             deleteIslandBlocks(island).join();
             IridiumSkyblock.getInstance().getSchematicManager().pasteSchematic(island, schematicConfig).join();
+            Skycells.getInstance().getIslandPortalManager().createPortal(island);
         });
     }
 
